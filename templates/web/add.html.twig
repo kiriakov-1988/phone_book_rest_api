@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} in Phone book{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+	<h1 class="text-center" ><a href="{{ path('web_list') }}">Phone book</a> | <a href="{{ path('api') }}">API</a></h1>
+
+    <hr>
+
+    <p class="text-center font-weight-bold">{{ title }}</p>
+
+    {{ form_start(add_form) }}
+    {{ form_widget(add_form) }}
+    {{ form_end(add_form) }}
+
+</div>
+{% endblock %}

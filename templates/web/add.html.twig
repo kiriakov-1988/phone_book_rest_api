@@ -2,11 +2,13 @@
 
 {% block title %}{{ title }} in Phone book{% endblock %}
 
+{% block navbar %}
+    {{ include('_partials/_navbar.html.twig') }}
+{% endblock %}
+
 {% block body %}
 
 <div class="container">
-
-	<h1 class="text-center" ><a href="{{ path('web_list') }}">Phone book</a> | <a href="{{ path('api') }}">API</a></h1>
 
     <hr>
 

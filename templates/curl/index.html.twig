@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}cUrl{% endblock %}
+
+
+{% block navbar %}
+    {{ include('_partials/_navbar.html.twig') }}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+
+    <hr>
+        <code>GET: <a href="{{ path('curl_users') }}" class="btn btn-info">api/users</a></code>
+    
+    <hr>
+        <code>GET:</code>
+        {{ form_start(search_form) }}
+        {{ form_widget(search_form) }}
+        {{ form_end(search_form) }}
+
+    <hr>
+        <code>POST:</code>
+        {{ form_start(post_form) }}
+        {{ form_widget(post_form) }}
+        {{ form_end(post_form) }}
+
+    <hr>
+        <code>PUT:</code>
+        {{ form_start(update_form) }}
+        {{ form_widget(update_form) }}
+        {{ form_end(update_form) }}
+
+    <hr>
+        <code>DELETE:</code>
+        {{ form_start(delete_form) }}
+        {{ form_widget(delete_form) }}
+        {{ form_end(delete_form) }}
+
+</div>
+{% endblock %}

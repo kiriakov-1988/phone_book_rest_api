@@ -5,9 +5,17 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
 			<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+            <style>
+                .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+                .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+                .bcground_code { background: #F5F5F5; padding: 20px;}
+            </style>
         {% endblock %}
+
     </head>
     <body>
+        {% block navbar %}{% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

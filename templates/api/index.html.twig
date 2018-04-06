@@ -2,32 +2,26 @@
 
 {% block title %}Приложение - телефонная книга{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    </style>
-
-{% endblock %}
-
 {% block body %}
 
 <div class="example-wrapper">
     <h1>Приложение - телефонная книга, работающее на REST API</h1>
+
+    <hr>
 
     <ul>
     	<li><code>GET</code> для получения и поиска данных </li>
     	<li><code>POST</code> для добавления данных </li>
     	<li><code>PUT</code> для обновления данных </li>
     	<li><code>DELETE</code> для удаления данных </li>
-    	<br>
+        <hr>
     	<li><code>GET <a href="api/users">api/users</a></code> - возвращает всех юзеров </li>
     	<li><code>GET <a href="/api/users/search/JohnDoe">/api/users/search/JohnDoe</a></code> - ищет пользователя с именем JohnDoe </li>
     	<li><code>POST /api/users</code> - добавляет пользователя </li>
     	<li><code>PUT /api/users/13</code> - обновляет пользователя с таким ИД </li>
     </ul>
+
+    <hr>
 
     <p class="text-center font-weight-bold"><a href="{{ path('web_list') }}">Веб-интерфейс</a></p>
 

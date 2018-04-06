@@ -37,7 +37,7 @@ class ApiController extends Controller
 
         
         if (!$users) {
-	        return new JsonResponse(['No users found'], Response::HTTP_NOT_FOUND);
+	        return new JsonResponse(['No users'], Response::HTTP_NOT_FOUND);
 	    }
 
         $data = $this->get('jms_serializer')->serialize($users, 'json');
@@ -101,26 +101,24 @@ class ApiController extends Controller
      */
     public function add(Request $request)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        
+        $entityManager = $this->getDoctrine()->getManager();       
 
         $user = new PhoneBook();
 
-        ///////////////////////////////////////////
 
         $data = $request->getContent();
 
-	    $user_new = $this->get('jms_serializer')->deserialize($data, PhoneBook::class, 'json');
+        if(!json_decode($data, true)) {
+            return new JsonResponse(['Invalid json format for new user'], Response::HTTP_BAD_REQUEST);
+        }        
+        
 
-	    $phone = $user_new->getPhone();
-	    $name = $user_new->getName();
+	    $user_new = $this->get('jms_serializer')->deserialize($data, PhoneBook::class, 'json');      
 
-        // $name = $request->request->get('name');
-        // $phone = $request->request->get('phone');
+	    $user->setName($user_new->getName());
+	    $user->setPhone($user_new->getPhone());
 
-	    $user->setName($name);
-	    $user->setPhone($phone);
-
+        
 	    $entityManager->persist($user);
 	    $entityManager->flush();
 
@@ -147,20 +145,16 @@ class ApiController extends Controller
 	        return new JsonResponse(['No user found for id' => $id], Response::HTTP_NOT_FOUND);
 	    }
 
-        ///////////////////////////////////////////
-
 	    $data = $request->getContent();
+
+        if(!json_decode($data, true)) {
+            return new JsonResponse(['Invalid json format for update user'], Response::HTTP_BAD_REQUEST);
+        } 
 
 	    $user_new = $this->get('jms_serializer')->deserialize($data, PhoneBook::class, 'json');
 
-	    $phone = $user_new->getPhone();
-	    $name = $user_new->getName();
-
-	    // $name = $request->request->get('name');
-        // $phone = $request->request->get('phone');
-
-	    $user->setName($name);
-	    $user->setPhone($phone);
+	    $user->setName($user_new->getName());
+	    $user->setPhone($user_new->getPhone());
 
 	    $entityManager->flush();
 

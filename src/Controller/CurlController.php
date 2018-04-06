@@ -123,7 +123,6 @@ class CurlController extends Controller
         // set url
         \curl_setopt($ch, CURLOPT_URL, $_SERVER['HTTP_HOST'] . "/api/" . $url);
 
-        // \curl_setopt($ch, CURLOPT_HEADER, false);
         \curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
         if ($input) {
@@ -135,6 +134,10 @@ class CurlController extends Controller
 
         //return the transfer as a string
         \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // set max seconds for execute cURL functions
+        \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+        \curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 
         // $output contains the output string
         $output = \curl_exec($ch);
